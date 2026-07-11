@@ -2,107 +2,7 @@ import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 
-/* ---------------- Why Morph (Visual Problem/Solution) ---------------- */
-export function WhyMorph() {
-  return (
-    <section className="relative overflow-hidden py-32 md:py-48">
-      <div className="mx-auto max-w-5xl px-6">
-        {/* The Problem Section */}
-        <div className="flex flex-col items-center text-center">
-          <SectionLabel>01 · the problem</SectionLabel>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            className="mt-8 text-balance font-sans text-4xl font-semibold tracking-tighter md:text-6xl"
-          >
-            Stop memorizing obscure CLI flags.
-          </motion.h2>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
-            whileInView={{ opacity: 1, scale: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ delay: 0.2 }}
-            className="mt-12 w-full max-w-3xl"
-          >
-            <div className="glass overflow-hidden rounded-2xl border border-border bg-surface/20 shadow-soft">
-              <div className="flex items-center gap-2 border-b border-border/50 bg-background/30 px-4 py-3">
-                <span className="h-2.5 w-2.5 rounded-full bg-border-strong/50" />
-                <span className="h-2.5 w-2.5 rounded-full bg-border-strong/50" />
-                <span className="h-2.5 w-2.5 rounded-full bg-border-strong/50" />
-              </div>
-              <div className="space-y-4 p-6 text-left font-mono text-sm leading-relaxed text-muted-foreground/60 sm:text-base">
-                <div className="flex gap-3">
-                  <span className="text-destructive/60">~</span>
-                  <span className="break-all">
-                    ffmpeg -i video.mp4 -c:v libx264 -crf 23 -c:a aac -b:a 128k out.mp4
-                  </span>
-                </div>
-                <div className="flex gap-3">
-                  <span className="text-destructive/60">~</span>
-                  <span className="break-all">
-                    pandoc input.md -o output.pdf --pdf-engine=xelatex -V geometry:margin=1in
-                  </span>
-                </div>
-                <div className="flex gap-3">
-                  <span className="text-destructive/60">~</span>
-                  <span className="break-all">
-                    magick convert in.png -resize 50% -quality 80 out.jpg
-                  </span>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-
-        {/* The Solution Section */}
-        <div className="mt-32 flex flex-col items-center text-center md:mt-48">
-          <SectionLabel>the solution</SectionLabel>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            className="mt-8 py-2 text-balance font-display text-5xl font-medium italic tracking-tight text-accent-gradient md:text-7xl"
-          >
-            One verb. Any format.
-          </motion.h2>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
-            whileInView={{ opacity: 1, scale: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ delay: 0.2 }}
-            className="relative mt-12 w-full max-w-3xl"
-          >
-            <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-primary/20 via-accent/20 to-magenta/20 opacity-70 blur-xl" />
-            <div className="glass relative overflow-hidden rounded-2xl border border-primary/30 bg-surface/80 shadow-2xl backdrop-blur-xl">
-              <div className="flex items-center gap-2 border-b border-border/50 bg-background/40 px-4 py-3">
-                <span className="h-3 w-3 rounded-full bg-[#ff5f56] shadow-[inset_0_0_4px_rgba(255,255,255,0.2)]" />
-                <span className="h-3 w-3 rounded-full bg-[#ffbd2e] shadow-[inset_0_0_4px_rgba(255,255,255,0.2)]" />
-                <span className="h-3 w-3 rounded-full bg-[#27c93f] shadow-[inset_0_0_4px_rgba(255,255,255,0.2)]" />
-              </div>
-              <div className="space-y-4 p-6 text-left font-mono text-sm leading-relaxed text-foreground sm:text-base">
-                <div className="flex items-center gap-3">
-                  <span className="font-bold text-primary">➜</span>
-                  <span>morph video.mp4 out.mp4</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <span className="font-bold text-primary">➜</span>
-                  <span>morph input.md output.pdf</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <span className="font-bold text-primary">➜</span>
-                  <span>morph in.png out.jpg</span>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-    </section>
-  );
-}
 
 export function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
@@ -118,10 +18,10 @@ export function FeatureBento() {
   return (
     <section id="features" className="relative py-24 md:py-32">
       <div className="mx-auto max-w-6xl px-6">
-        <SectionLabel>02 · what makes it different</SectionLabel>
+        <SectionLabel>01 · what makes it different</SectionLabel>
         <h2 className="mt-6 max-w-3xl font-display text-4xl italic leading-tight md:text-6xl">
           <span className="text-gradient">A CLI that</span>{" "}
-          <span className="text-accent-gradient">respects your time.</span>
+          <span className="text-accent-gradient">respects your time. While doing more!</span>
         </h2>
 
         <div className="mt-16 grid grid-cols-1 gap-4 md:grid-cols-6 md:grid-rows-[repeat(5,minmax(0,220px))]">
@@ -149,14 +49,14 @@ export function FeatureBento() {
           <BentoCard className="md:col-span-2">
             <FeatureLocal />
           </BentoCard>
-          <BentoCard className="md:col-span-3">
-            <FeaturePack />
+          <BentoCard className="md:col-span-2">
+            <FeatureHistory />
           </BentoCard>
           <BentoCard className="md:col-span-1">
             <FeatureVerify />
           </BentoCard>
-          <BentoCard className="md:col-span-2">
-            <FeatureHistory />
+          <BentoCard className="md:col-span-3">
+            <FeaturePack />
           </BentoCard>
         </div>
       </div>
@@ -528,6 +428,15 @@ const SCENES = [
     ],
     tag: "multi-hop",
   },
+  {
+    input: "morph about",
+    lines: [
+      { c: "primary", t: "morph v1.0.0 — CLI converter" },
+      { c: "accent", t: "Author: Hariharen (https://hariharen.site)" },
+      { c: "muted", t: "License: MIT · Local-first & pluggable" },
+    ],
+    tag: "about",
+  },
 ];
 
 export function TerminalDemo() {
@@ -563,7 +472,7 @@ export function TerminalDemo() {
       <div className="mx-auto max-w-6xl px-6">
         <div className="grid gap-16 md:grid-cols-2 md:items-center">
           <div>
-            <SectionLabel>03 · live in your terminal</SectionLabel>
+            <SectionLabel>02 · live in your terminal</SectionLabel>
             <h2 className="mt-6 font-display text-4xl italic leading-tight md:text-6xl">
               <span className="text-gradient">You type.</span>{" "}
               <span className="text-accent-gradient">Morph routes.</span>
@@ -579,8 +488,8 @@ export function TerminalDemo() {
                   key={i}
                   onClick={() => setScene(i)}
                   className={`rounded-full border px-3.5 py-1.5 font-mono text-xs transition ${i === scene
-                      ? "border-primary bg-primary/15 text-primary"
-                      : "border-border bg-surface/60 text-muted-foreground hover:text-foreground"
+                    ? "border-primary bg-primary/15 text-primary"
+                    : "border-border bg-surface/60 text-muted-foreground hover:text-foreground"
                     }`}
                 >
                   {s.tag}
@@ -704,7 +613,7 @@ export function FormatGraph() {
   return (
     <section id="formats" ref={ref} className="relative py-24 md:py-32">
       <div className="mx-auto max-w-6xl px-6">
-        <SectionLabel>04 · the graph</SectionLabel>
+        <SectionLabel>03 · the graph</SectionLabel>
         <div className="mt-6 grid gap-10 md:grid-cols-[1.1fr_1fr] md:items-end">
           <h2 className="max-w-2xl font-display text-4xl italic leading-tight md:text-6xl">
             <span className="text-gradient">90+ formats.</span>{" "}
@@ -827,7 +736,7 @@ export function BatchShowcase() {
       <div className="mx-auto max-w-6xl px-6">
         <div className="grid gap-14 md:grid-cols-2 md:items-center">
           <div>
-            <SectionLabel>05 · batch mode</SectionLabel>
+            <SectionLabel>04 · batch mode</SectionLabel>
             <h2 className="mt-6 font-display text-4xl italic leading-tight md:text-6xl">
               <span className="text-gradient">Convert a folder</span>{" "}
               <span className="text-accent-gradient">without writing a loop.</span>

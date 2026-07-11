@@ -10,7 +10,6 @@ import {
   FeatureBento,
   FormatGraph,
   TerminalDemo,
-  WhyMorph,
 } from "@/components/site/Sections";
 
 export default function App() {
@@ -31,7 +30,6 @@ export default function App() {
       <main>
         <Hero />
         <CommandMarquee />
-        <WhyMorph />
         <FeatureBento />
         <TerminalDemo />
         <FormatGraph />

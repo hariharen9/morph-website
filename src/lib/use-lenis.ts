@@ -15,8 +15,30 @@ export function useLenis() {
       raf = requestAnimationFrame(loop);
     };
     raf = requestAnimationFrame(loop);
+
+    const handleAnchorClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const anchor = target.closest("a");
+      if (anchor) {
+        const href = anchor.getAttribute("href");
+        if (href && href.startsWith("#")) {
+          e.preventDefault();
+          if (href === "#top") {
+            lenis.scrollTo(0);
+          } else {
+            const targetEl = document.querySelector(href);
+            if (targetEl) {
+              lenis.scrollTo(targetEl);
+            }
+          }
+        }
+      }
+    };
+    document.addEventListener("click", handleAnchorClick);
+
     return () => {
       cancelAnimationFrame(raf);
+      document.removeEventListener("click", handleAnchorClick);
       lenis.destroy();
     };
   }, []);

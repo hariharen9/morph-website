@@ -45,6 +45,9 @@ export function Nav() {
           <a href="#architecture" className="transition hover:text-foreground">
             architecture
           </a>
+          <a href="#install" className="transition hover:text-foreground">
+            install
+          </a>
         </nav>
         <a
           href="https://github.com/hariharen9/morph"
@@ -172,9 +175,17 @@ export function Hero() {
     <section id="top" ref={heroRef} className="relative pt-36 pb-24 md:pt-44 md:pb-40">
       <motion.div style={{ y, opacity }} className="mx-auto max-w-6xl px-6">
         <div className="flex flex-col items-center text-center">
-          <div className="hero-tag glass inline-flex items-center gap-2 rounded-full px-3 py-1 font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
+          <div className="hero-tag glass inline-flex items-center gap-2 rounded-full px-3.5 py-1 font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
             <span className="h-1.5 w-1.5 rounded-full bg-primary shadow-[0_0_10px_var(--primary)]" />
-            v1 · 90+ formats · 1,000+ routes
+            v1 · 90+ formats · 1,000+ routes · by{" "}
+            <a
+              href="https://hariharen.site"
+              target="_blank"
+              rel="noreferrer"
+              className="text-foreground transition-all duration-300 hover:text-primary hover:[text-shadow:0_0_8px_var(--primary)]"
+            >
+              Hariharen
+            </a>
           </div>
 
           <h1 className="mt-12 max-w-5xl text-balance font-sans text-5xl font-semibold tracking-tighter text-foreground sm:text-7xl md:text-[7.5rem]">

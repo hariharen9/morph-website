@@ -20,7 +20,7 @@ export function Architecture() {
   return (
     <section id="architecture" className="relative py-24 md:py-32">
       <div className="mx-auto max-w-6xl px-6">
-        <SectionLabel>06 · architecture</SectionLabel>
+        <SectionLabel>05 · architecture</SectionLabel>
         <div className="mt-6 grid gap-10 md:grid-cols-[1.2fr_1fr] md:items-end">
           <h2 className="font-display text-4xl italic leading-tight md:text-6xl">
             <span className="text-gradient">A tiny core.</span>{" "}
@@ -118,7 +118,7 @@ export function CTA() {
   return (
     <section id="install" ref={ref} className="relative py-32 md:py-48">
       <div className="mx-auto max-w-5xl px-6 text-center">
-        <SectionLabel>07 · get morph</SectionLabel>
+        <SectionLabel>06 · get morph</SectionLabel>
         <h2 className="mt-8 text-balance font-display text-6xl md:text-[9rem]">
           <span className="block relative z-20">
             <span className="cta-word block leading-normal text-gradient">One command.</span>
@@ -129,14 +129,14 @@ export function CTA() {
         </h2>
 
         <div className="mx-auto mt-14 max-w-2xl text-left">
-          <Tabs defaultValue="windows" className="w-full">
+          <Tabs defaultValue="python" className="w-full">
             <div className="mb-6 flex justify-center">
               <TabsList className="h-auto rounded-full border border-border bg-surface/50 p-1">
                 <TabsTrigger
-                  value="windows"
+                  value="python"
                   className="rounded-full px-4 py-1.5 font-mono text-xs transition data-[state=active]:bg-primary/15 data-[state=active]:text-primary data-[state=active]:shadow-none"
                 >
-                  Windows
+                  Pipx
                 </TabsTrigger>
                 <TabsTrigger
                   value="macos"
@@ -145,10 +145,13 @@ export function CTA() {
                   macOS
                 </TabsTrigger>
                 <TabsTrigger
-                  value="python"
-                  className="rounded-full px-4 py-1.5 font-mono text-xs transition data-[state=active]:bg-primary/15 data-[state=active]:text-primary data-[state=active]:shadow-none"
+                  value="windows"
+                  className="rounded-full px-4 py-1.5 font-mono text-xs transition data-[state=active]:bg-primary/15 data-[state=active]:text-primary data-[state=active]:shadow-none flex items-center gap-1.5"
                 >
-                  Pipx
+                  Windows
+                  <span className="rounded-full bg-accent/15 px-1.5 py-0.5 text-[9px] font-medium tracking-wide text-accent uppercase">
+                    soon
+                  </span>
                 </TabsTrigger>
                 <TabsTrigger
                   value="source"
@@ -159,10 +162,10 @@ export function CTA() {
               </TabsList>
             </div>
 
-            <TabsContent value="windows">
+            <TabsContent value="python">
               <InstallCommand
-                code="winget install hariharen.morph"
-                note="via Winget (Recommended). Standalone binary, no Python required."
+                code="pipx install morphconv"
+                note="via PyPI using pipx. Global installation in isolated environment."
               />
             </TabsContent>
             <TabsContent value="macos">
@@ -171,10 +174,11 @@ export function CTA() {
                 note="via Homebrew. Standalone binary, no Python required."
               />
             </TabsContent>
-            <TabsContent value="python">
+            <TabsContent value="windows">
               <InstallCommand
-                code="pipx install morphconv"
-                note="via PyPI using pipx. Global installation in isolated environment."
+                code="winget install hariharen.morph"
+                note="via Winget (Recommended). Standalone binary, no Python required."
+                comingSoon
               />
             </TabsContent>
             <TabsContent value="source">
@@ -225,7 +229,7 @@ export function Footer() {
             design.
           </p>
         </div>
-        <div className="grid grid-cols-2 gap-x-10 gap-y-2 font-mono text-xs text-muted-foreground sm:grid-cols-3">
+        <div className="grid grid-cols-2 gap-x-10 gap-y-2 font-mono text-xs text-muted-foreground sm:grid-cols-3 sm:text-right">
           <a href="#features" className="hover:text-foreground">
             features
           </a>
@@ -252,12 +256,14 @@ export function Footer() {
         </div>
       </div>
       <div className="mx-auto mt-10 flex max-w-6xl flex-col items-center justify-between gap-4 px-6 font-mono text-[10px] uppercase tracking-widest text-muted-foreground md:flex-row">
-        <div>
+        <div className="text-center md:text-left">
           © {new Date().getFullYear()} morph · MIT · built with pandoc, ffmpeg, pillow &amp; a lot of
           love
         </div>
-        <div>
-          Built with 💖 by{" "}
+        <div className="flex items-center gap-1.5">
+          <span>built with</span>
+          <span className="text-[11px] text-primary select-none animate-pulse">❤️</span>
+          <span>by</span>
           <a
             href="https://hariharen.site"
             target="_blank"
@@ -272,13 +278,26 @@ export function Footer() {
   );
 }
 
-function InstallCommand({ code, note }: { code: string; note: string }) {
+function InstallCommand({
+  code,
+  note,
+  comingSoon = false,
+}: {
+  code: string;
+  note: string;
+  comingSoon?: boolean;
+}) {
   return (
     <div>
-      <div className="glass flex items-center justify-between gap-4 rounded-2xl border border-border-strong px-5 py-4 text-left font-mono text-sm shadow-soft">
+      <div className={`glass flex items-center justify-between gap-4 rounded-2xl border border-border-strong px-5 py-4 text-left font-mono text-sm shadow-soft relative overflow-hidden ${comingSoon ? 'opacity-85' : ''}`}>
         <div className="flex items-center gap-3 truncate">
           <span className="text-primary">$</span>
           <span className="truncate text-foreground">{code}</span>
+          {comingSoon && (
+            <span className="rounded-full bg-accent/15 px-2 py-0.5 text-[10px] font-semibold tracking-wider text-accent uppercase animate-pulse">
+              Coming Soon
+            </span>
+          )}
         </div>
         <button
           onClick={() => navigator.clipboard?.writeText(code)}
@@ -287,7 +306,18 @@ function InstallCommand({ code, note }: { code: string; note: string }) {
           copy
         </button>
       </div>
-      <p className="mt-3 text-center font-mono text-[11px] text-muted-foreground">{note}</p>
+      <p className="mt-3 text-center font-mono text-[11px] text-muted-foreground">
+        {comingSoon ? (
+          <>
+            {note}{" "}
+            <span className="text-accent block mt-1">
+              (PR pending merge — coming soon!)
+            </span>
+          </>
+        ) : (
+          note
+        )}
+      </p>
     </div>
   );
 }

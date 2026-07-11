@@ -129,6 +129,7 @@ const HERO_COMMANDS = [
   { cmd: "morph clip.mp4 clip.gif --fps 10 --width 480", note: "via ffmpeg" },
   { cmd: "morph data.csv data.yaml", note: "csv → json → yaml" },
   { cmd: "morph batch '*.mp4' mp3 --workers 4", note: "parallel batch" },
+  { cmd: "morph pack '*.png' archive.zip", note: "auto archive" },
 ];
 
 export function Hero() {
@@ -173,7 +174,7 @@ export function Hero() {
         <div className="flex flex-col items-center text-center">
           <div className="hero-tag glass inline-flex items-center gap-2 rounded-full px-3 py-1 font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
             <span className="h-1.5 w-1.5 rounded-full bg-primary shadow-[0_0_10px_var(--primary)]" />
-            v1 · 66 formats · 1,000+ routes
+            v1 · 90+ formats · 1,000+ routes
           </div>
 
           <h1 className="mt-12 max-w-5xl text-balance font-sans text-5xl font-semibold tracking-tighter text-foreground sm:text-7xl md:text-[7.5rem]">
@@ -296,14 +297,17 @@ function TerminalCard({ cmd, note, idx }: { cmd: string; note: string; idx: numb
 const MARQUEE = [
   "morph report.docx report.pdf",
   "morph photo.png photo.webp --quality 80",
+  "morph pack '*.png' archive.zip",
   "morph song.wav song.mp3 --bitrate 192k",
   "morph book.epub book.mobi",
   "morph data.csv data.xlsx",
   "morph font.ttf font.woff2",
+  "morph history",
   "morph clip.mov clip.mp4",
   "morph diagram.svg diagram.png",
   "morph notes.md notes.docx",
   "morph project.zip project.tar.gz",
+  "morph undo",
 ];
 
 export function CommandMarquee() {

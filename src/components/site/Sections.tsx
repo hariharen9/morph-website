@@ -124,7 +124,7 @@ export function FeatureBento() {
           <span className="text-accent-gradient">respects your time.</span>
         </h2>
 
-        <div className="mt-16 grid grid-cols-1 gap-4 md:grid-cols-6 md:grid-rows-[repeat(4,minmax(0,220px))]">
+        <div className="mt-16 grid grid-cols-1 gap-4 md:grid-cols-6 md:grid-rows-[repeat(5,minmax(0,220px))]">
           <BentoCard className="md:col-span-4 md:row-span-2" glow>
             <FeatureRouting />
           </BentoCard>
@@ -148,6 +148,15 @@ export function FeatureBento() {
           </BentoCard>
           <BentoCard className="md:col-span-2">
             <FeatureLocal />
+          </BentoCard>
+          <BentoCard className="md:col-span-3">
+            <FeaturePack />
+          </BentoCard>
+          <BentoCard className="md:col-span-1">
+            <FeatureVerify />
+          </BentoCard>
+          <BentoCard className="md:col-span-2">
+            <FeatureHistory />
           </BentoCard>
         </div>
       </div>
@@ -435,6 +444,52 @@ function FeatureUndo() {
   );
 }
 
+function FeaturePack() {
+  return (
+    <div className="flex h-full flex-col justify-between">
+      <CardTitle eyebrow="Archives" title="Smart Packing." />
+      <div className="my-3 rounded-lg border border-border bg-background/60 p-3 font-mono text-[11px]">
+        <div className="text-primary truncate">$ morph pack *.png photos/ docs/ out.zip</div>
+        <div className="mt-2 text-muted-foreground truncate">→ stripping common paths...</div>
+      </div>
+      <p className="text-sm text-muted-foreground">
+        Collect any number of files or directories into a single archive effortlessly.
+      </p>
+    </div>
+  );
+}
+
+function FeatureVerify() {
+  return (
+    <div className="flex h-full flex-col justify-between">
+      <CardTitle eyebrow="Verify" title="SHA-256" />
+      <div className="my-2 rounded-lg border border-border bg-background/60 p-2 font-mono text-[10px] text-center text-muted-foreground truncate">
+        --verify
+      </div>
+      <p className="text-sm text-muted-foreground">
+        Checksums built-in.
+      </p>
+    </div>
+  );
+}
+
+function FeatureHistory() {
+  return (
+    <div className="flex h-full flex-col justify-between">
+      <CardTitle eyebrow="Transparency" title="History log." />
+      <div className="my-3 rounded-lg border border-border bg-background/60 p-3 font-mono text-[10px] text-muted-foreground">
+        <div className="flex justify-between border-b border-border-strong pb-1">
+          <span>2m ago</span><span className="text-primary">✓ 1.8s</span>
+        </div>
+        <div className="pt-1 text-foreground">md → docx (README.md)</div>
+      </div>
+      <p className="text-sm text-muted-foreground">
+        Every conversion is logged. Review execution history anytime.
+      </p>
+    </div>
+  );
+}
+
 /* ---------------- Terminal Demo (typing) ---------------- */
 const SCENES = [
   {
@@ -652,12 +707,12 @@ export function FormatGraph() {
         <SectionLabel>04 · the graph</SectionLabel>
         <div className="mt-6 grid gap-10 md:grid-cols-[1.1fr_1fr] md:items-end">
           <h2 className="max-w-2xl font-display text-4xl italic leading-tight md:text-6xl">
-            <span className="text-gradient">75 formats.</span>{" "}
+            <span className="text-gradient">90+ formats.</span>{" "}
             <span className="text-accent-gradient">1,000+ routes.</span>{" "}
             <span className="text-gradient">One graph.</span>
           </h2>
           <div className="grid grid-cols-3 gap-4 font-mono text-xs">
-            <Stat n={75} label="formats" />
+            <Stat n={90} label="formats" suffix="+" />
             <Stat n={11} label="families" />
             <Stat n={1000} label="routes" suffix="+" />
           </div>

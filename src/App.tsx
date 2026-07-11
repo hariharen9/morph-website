@@ -1,4 +1,3 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -14,21 +13,7 @@ import {
   WhyMorph,
 } from "@/components/site/Sections";
 
-export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Morph — Convert anything to anything, from the CLI." },
-      {
-        name: "description",
-        content:
-          "One command. 66 formats. 1,000+ multi-hop routes. Morph orchestrates ffmpeg, pandoc, Pillow and more behind a single, predictable interface — local-first, no API keys.",
-      },
-    ],
-  }),
-  component: Index,
-});
-
-function Index() {
+export default function App() {
   useLenis();
 
   useEffect(() => {

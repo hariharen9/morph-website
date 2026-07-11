@@ -146,7 +146,7 @@ export function Hero() {
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.from(".hero-line", {
-        yPercent: 110,
+        yPercent: 130,
         opacity: 0,
         duration: 1.2,
         ease: "expo.out",
@@ -176,17 +176,20 @@ export function Hero() {
             v1 · 66 formats · 1,000+ routes
           </div>
 
-          <h1 className="mt-8 max-w-5xl text-balance font-display text-[15vw] leading-[0.9] tracking-tight sm:text-[9rem] md:text-[11rem]">
-            <span className="block overflow-hidden">
-              <span className="hero-line block text-gradient">Convert</span>
+          <h1 className="mt-12 max-w-5xl text-balance font-sans text-5xl font-semibold tracking-tighter text-foreground sm:text-7xl md:text-[7.5rem]">
+            <span className="block relative z-30">
+              <span className="hero-line block leading-normal">Convert</span>
             </span>
-            <span className="block overflow-hidden">
-              <span className="hero-line block italic text-accent-gradient">anything</span>
-            </span>
-            <span className="block overflow-hidden">
-              <span className="hero-line block font-sans text-[0.42em] font-light uppercase tracking-[0.3em] text-muted-foreground">
-                to&nbsp;anything&nbsp;·&nbsp;from&nbsp;the&nbsp;CLI
+            <span className="block relative z-20 -mt-[0.6em]">
+              <span className="hero-line block leading-normal">
+                <span className="font-display pr-3 font-medium italic text-accent-gradient pb-2">
+                  anything
+                </span>
+                <span className="text-muted-foreground">to</span>
               </span>
+            </span>
+            <span className="block relative z-10 -mt-[0.6em]">
+              <span className="hero-line block text-muted-foreground leading-normal">anything.</span>
             </span>
           </h1>
 
@@ -198,19 +201,21 @@ export function Hero() {
             grammar.
           </p>
 
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-            <a
-              href="#install"
-              className="hero-cta group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-primary px-6 py-3 font-mono text-sm font-medium text-primary-foreground transition"
-              style={{ boxShadow: "var(--shadow-glow)" }}
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+            <button
+              onClick={() => navigator.clipboard?.writeText("pip install morphconv")}
+              className="hero-cta group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-primary px-8 py-3.5 font-mono text-sm font-medium text-primary-foreground transition-transform hover:scale-105 active:scale-95"
+              style={{ boxShadow: "0 0 40px -10px var(--primary)" }}
             >
-              <span className="relative z-10">$ pip install morph</span>
-              <span className="relative z-10 transition group-hover:translate-x-0.5">→</span>
+              <span className="relative z-10">$ pip install morphconv</span>
+              <span className="relative z-10 ml-1 flex items-center justify-center opacity-60 transition-opacity group-hover:opacity-100">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              </span>
               <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
-            </a>
+            </button>
             <a
               href="#terminal"
-              className="hero-cta inline-flex items-center gap-2 rounded-full border border-border-strong bg-surface/60 px-6 py-3 font-mono text-sm text-foreground backdrop-blur transition hover:bg-surface-elevated"
+              className="hero-cta inline-flex items-center gap-2 rounded-full border border-border/50 bg-surface/30 px-8 py-3.5 font-mono text-sm text-foreground backdrop-blur-md transition-colors transition-transform hover:border-border-strong hover:bg-surface/80"
             >
               watch it work ↓
             </a>
@@ -243,41 +248,45 @@ function Kbd({ label }: { label: string }) {
 
 function TerminalCard({ cmd, note, idx }: { cmd: string; note: string; idx: number }) {
   return (
-    <div className="glass mx-auto max-w-3xl overflow-hidden rounded-2xl shadow-soft">
-      <div className="flex items-center justify-between border-b border-border px-4 py-2.5">
-        <div className="flex items-center gap-1.5">
-          <span className="h-2.5 w-2.5 rounded-full bg-destructive/70" />
-          <span className="h-2.5 w-2.5 rounded-full bg-amber/70" />
-          <span className="h-2.5 w-2.5 rounded-full bg-primary/70" />
-        </div>
-        <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-          ~/projects — morph
-        </span>
-        <span className="w-14" />
-      </div>
-      <div className="relative px-6 py-8 font-mono text-sm leading-relaxed sm:text-base">
-        <div className="flex items-baseline gap-2 text-muted-foreground">
-          <span className="text-primary">➜</span>
-          <span className="text-accent">~</span>
-        </div>
-        <motion.div
-          key={idx}
-          initial={{ opacity: 0, y: 6 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="mt-1"
-        >
-          <span className="text-foreground">{cmd}</span>
-          <span className="animate-caret ml-0.5 inline-block h-4 w-2 translate-y-0.5 bg-primary" />
-          <div className="mt-4 flex items-center gap-2 text-xs text-muted-foreground">
-            <span className="rounded border border-primary/40 bg-primary/10 px-1.5 py-0.5 text-primary">
-              ok
-            </span>
-            <span>{note}</span>
-            <span className="opacity-40">·</span>
-            <span>0.14s</span>
+    <div className="relative mx-auto max-w-3xl">
+      <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-primary/30 via-accent/30 to-magenta/30 opacity-70 blur-2xl" />
+      <div
+        className="relative overflow-hidden rounded-2xl border border-border-strong bg-surface/80 shadow-2xl backdrop-blur-xl"
+        style={{ boxShadow: "inset 0 1px 0 rgba(255,255,255,0.1), 0 20px 40px -10px rgba(0,0,0,0.5)" }}
+      >
+        <div className="flex items-center justify-between border-b border-border/50 bg-background/40 px-4 py-3">
+          <div className="flex items-center gap-2">
+            <span className="h-3 w-3 rounded-full bg-[#ff5f56] shadow-[inset_0_0_4px_rgba(255,255,255,0.2)]" />
+            <span className="h-3 w-3 rounded-full bg-[#ffbd2e] shadow-[inset_0_0_4px_rgba(255,255,255,0.2)]" />
+            <span className="h-3 w-3 rounded-full bg-[#27c93f] shadow-[inset_0_0_4px_rgba(255,255,255,0.2)]" />
           </div>
-        </motion.div>
+          <span className="font-sans text-xs font-medium text-muted-foreground">morph — bash</span>
+          <span className="w-14" />
+        </div>
+        <div className="relative px-6 py-8 font-mono text-sm leading-relaxed sm:text-base">
+          <div className="flex items-baseline gap-3 text-muted-foreground">
+            <span className="font-bold text-primary">~</span>
+            <span className="text-foreground/40">$</span>
+          </div>
+          <motion.div
+            key={idx}
+            initial={{ opacity: 0, y: 4 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            className="mt-1"
+          >
+            <span className="font-medium text-foreground drop-shadow-sm">{cmd}</span>
+            <span className="animate-caret ml-1 inline-block h-5 w-2.5 translate-y-1 bg-primary/80 shadow-[0_0_8px_var(--primary)]" />
+            <div className="mt-5 flex items-center gap-3 text-xs text-muted-foreground/80">
+              <span className="rounded-md border border-primary/30 bg-primary/10 px-2 py-0.5 text-primary">
+                success
+              </span>
+              <span>{note}</span>
+              <span className="opacity-30">·</span>
+              <span>0.14s</span>
+            </div>
+          </motion.div>
+        </div>
       </div>
     </div>
   );

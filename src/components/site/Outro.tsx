@@ -119,12 +119,12 @@ export function CTA() {
     <section id="install" ref={ref} className="relative py-32 md:py-48">
       <div className="mx-auto max-w-5xl px-6 text-center">
         <SectionLabel>07 · get morph</SectionLabel>
-        <h2 className="mt-8 text-balance font-display text-6xl leading-[0.95] md:text-[9rem]">
-          <span className="block overflow-hidden">
-            <span className="cta-word block text-gradient">One command.</span>
+        <h2 className="mt-8 text-balance font-display text-6xl md:text-[9rem]">
+          <span className="block relative z-20">
+            <span className="cta-word block leading-normal text-gradient">One command.</span>
           </span>
-          <span className="block overflow-hidden">
-            <span className="cta-word block italic text-accent-gradient">Everything else.</span>
+          <span className="block relative z-10 -mt-[0.25em]">
+            <span className="cta-word block leading-normal italic text-accent-gradient pb-4">Everything else.</span>
           </span>
         </h2>
 
@@ -173,7 +173,7 @@ export function CTA() {
             </TabsContent>
             <TabsContent value="python">
               <InstallCommand
-                code="pipx install morph"
+                code="pipx install morphconv"
                 note="via PyPI using pipx. Global installation in isolated environment."
               />
             </TabsContent>
@@ -251,9 +251,22 @@ export function Footer() {
           </a>
         </div>
       </div>
-      <div className="mx-auto mt-10 max-w-6xl px-6 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-        © {new Date().getFullYear()} morph · MIT · built with pandoc, ffmpeg, pillow &amp; a lot of
-        love
+      <div className="mx-auto mt-10 flex max-w-6xl flex-col items-center justify-between gap-4 px-6 font-mono text-[10px] uppercase tracking-widest text-muted-foreground md:flex-row">
+        <div>
+          © {new Date().getFullYear()} morph · MIT · built with pandoc, ffmpeg, pillow &amp; a lot of
+          love
+        </div>
+        <div>
+          Built with 💖 by{" "}
+          <a
+            href="https://hariharen.site"
+            target="_blank"
+            rel="noreferrer"
+            className="text-foreground transition-colors hover:text-primary"
+          >
+            Hariharen
+          </a>
+        </div>
       </div>
     </footer>
   );

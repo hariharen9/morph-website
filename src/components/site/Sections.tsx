@@ -2,56 +2,105 @@ import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 
-/* ---------------- Why Morph (big statement) ---------------- */
+/* ---------------- Why Morph (Visual Problem/Solution) ---------------- */
 export function WhyMorph() {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const y = useTransform(scrollYProgress, [0, 1], [40, -40]);
-
   return (
-    <section ref={ref} className="relative py-32 md:py-48">
+    <section className="relative overflow-hidden py-32 md:py-48">
       <div className="mx-auto max-w-5xl px-6">
-        <SectionLabel>01 · why morph exists</SectionLabel>
-        <motion.h2
-          style={{ y }}
-          className="mt-8 text-balance font-display text-4xl leading-[1.05] tracking-tight md:text-6xl lg:text-7xl"
-        >
-          <RevealText>
-            <span className="text-muted-foreground">ffmpeg converts media.</span>{" "}
-            <span className="text-muted-foreground">pandoc converts documents.</span>{" "}
-            <span className="text-muted-foreground">ImageMagick converts images.</span>{" "}
-            <span className="text-foreground">Nobody wired them into </span>
-            <span className="italic text-accent-gradient">one coherent tool</span>
-            <span className="text-foreground"> with one grammar and a genuinely good CLI.</span>
-          </RevealText>
-        </motion.h2>
-        <motion.p
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="mt-10 max-w-2xl font-mono text-sm text-muted-foreground"
-        >
-          → morph orchestrates the best tool for each job behind a single, predictable interface —
-          detects what's missing, tells you exactly what it'll install, and routes through
-          intermediate formats automatically when there's no direct converter.
-        </motion.p>
+        {/* The Problem Section */}
+        <div className="flex flex-col items-center text-center">
+          <SectionLabel>01 · the problem</SectionLabel>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            className="mt-8 text-balance font-sans text-4xl font-semibold tracking-tighter md:text-6xl"
+          >
+            Stop memorizing obscure CLI flags.
+          </motion.h2>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ delay: 0.2 }}
+            className="mt-12 w-full max-w-3xl"
+          >
+            <div className="glass overflow-hidden rounded-2xl border border-border bg-surface/20 shadow-soft">
+              <div className="flex items-center gap-2 border-b border-border/50 bg-background/30 px-4 py-3">
+                <span className="h-2.5 w-2.5 rounded-full bg-border-strong/50" />
+                <span className="h-2.5 w-2.5 rounded-full bg-border-strong/50" />
+                <span className="h-2.5 w-2.5 rounded-full bg-border-strong/50" />
+              </div>
+              <div className="space-y-4 p-6 text-left font-mono text-sm leading-relaxed text-muted-foreground/60 sm:text-base">
+                <div className="flex gap-3">
+                  <span className="text-destructive/60">~</span>
+                  <span className="break-all">
+                    ffmpeg -i video.mp4 -c:v libx264 -crf 23 -c:a aac -b:a 128k out.mp4
+                  </span>
+                </div>
+                <div className="flex gap-3">
+                  <span className="text-destructive/60">~</span>
+                  <span className="break-all">
+                    pandoc input.md -o output.pdf --pdf-engine=xelatex -V geometry:margin=1in
+                  </span>
+                </div>
+                <div className="flex gap-3">
+                  <span className="text-destructive/60">~</span>
+                  <span className="break-all">
+                    magick convert in.png -resize 50% -quality 80 out.jpg
+                  </span>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* The Solution Section */}
+        <div className="mt-32 flex flex-col items-center text-center md:mt-48">
+          <SectionLabel>the solution</SectionLabel>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            className="mt-8 py-2 text-balance font-display text-5xl font-medium italic tracking-tight text-accent-gradient md:text-7xl"
+          >
+            One verb. Any format.
+          </motion.h2>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ delay: 0.2 }}
+            className="relative mt-12 w-full max-w-3xl"
+          >
+            <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-primary/20 via-accent/20 to-magenta/20 opacity-70 blur-xl" />
+            <div className="glass relative overflow-hidden rounded-2xl border border-primary/30 bg-surface/80 shadow-2xl backdrop-blur-xl">
+              <div className="flex items-center gap-2 border-b border-border/50 bg-background/40 px-4 py-3">
+                <span className="h-3 w-3 rounded-full bg-[#ff5f56] shadow-[inset_0_0_4px_rgba(255,255,255,0.2)]" />
+                <span className="h-3 w-3 rounded-full bg-[#ffbd2e] shadow-[inset_0_0_4px_rgba(255,255,255,0.2)]" />
+                <span className="h-3 w-3 rounded-full bg-[#27c93f] shadow-[inset_0_0_4px_rgba(255,255,255,0.2)]" />
+              </div>
+              <div className="space-y-4 p-6 text-left font-mono text-sm leading-relaxed text-foreground sm:text-base">
+                <div className="flex items-center gap-3">
+                  <span className="font-bold text-primary">➜</span>
+                  <span>morph video.mp4 out.mp4</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="font-bold text-primary">➜</span>
+                  <span>morph input.md output.pdf</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="font-bold text-primary">➜</span>
+                  <span>morph in.png out.jpg</span>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
-  );
-}
-
-function RevealText({ children }: { children: React.ReactNode }) {
-  return (
-    <motion.span
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-120px" }}
-      transition={{ staggerChildren: 0.02 }}
-      className="inline"
-    >
-      {children}
-    </motion.span>
   );
 }
 
@@ -261,9 +310,9 @@ function FeatureOneVerb() {
           <span className="text-primary">$</span> morph file.a file.b
         </div>
       </div>
-      <p className="text-sm text-muted-foreground">
+      {/* <p className="text-sm text-muted-foreground">
         No subcommand ceremony. Two paths in, one line out.
-      </p>
+      </p> */}
     </div>
   );
 }
@@ -340,11 +389,11 @@ function FeatureTui() {
       <CardTitle eyebrow="Interactive TUI" title="Visual dashboard." />
       <div className="my-4 rounded-lg border border-border bg-background/60 p-3 font-mono text-[10px] text-muted-foreground flex flex-col gap-1 overflow-hidden">
         <div className="flex justify-between border-b border-border-strong pb-1">
-           <span>morph interactive</span><span>v1.0</span>
+          <span>morph interactive</span><span>v1.0</span>
         </div>
         <div className="flex gap-2 pt-1">
-           <span className="text-primary">▶ convert</span>
-           <span>history</span>
+          <span className="text-primary">▶ convert</span>
+          <span>history</span>
         </div>
       </div>
       <p className="text-sm text-muted-foreground">
@@ -474,11 +523,10 @@ export function TerminalDemo() {
                 <button
                   key={i}
                   onClick={() => setScene(i)}
-                  className={`rounded-full border px-3.5 py-1.5 font-mono text-xs transition ${
-                    i === scene
+                  className={`rounded-full border px-3.5 py-1.5 font-mono text-xs transition ${i === scene
                       ? "border-primary bg-primary/15 text-primary"
                       : "border-border bg-surface/60 text-muted-foreground hover:text-foreground"
-                  }`}
+                    }`}
                 >
                   {s.tag}
                 </button>
@@ -622,9 +670,8 @@ export function FormatGraph() {
                 key={f.name}
                 onMouseEnter={() => setActive(i)}
                 onClick={() => setActive(i)}
-                className={`flex w-full items-center justify-between rounded-xl px-4 py-3 text-left transition ${
-                  i === active ? "bg-surface-elevated" : "hover:bg-surface"
-                }`}
+                className={`flex w-full items-center justify-between rounded-xl px-4 py-3 text-left transition ${i === active ? "bg-surface-elevated" : "hover:bg-surface"
+                  }`}
               >
                 <div className="flex items-center gap-3">
                   <span

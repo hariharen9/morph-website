@@ -5,5 +5,5 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
   resolve: { tsconfigPaths: true },
-  plugins: [tanstackStart({ server: { entry: "server" } }), tailwindcss(), viteReact()],
+  plugins: [tanstackStart({ server: { preset: "netlify", entry: "server" } }), tailwindcss(), viteReact()],
 });

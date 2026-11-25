@@ -432,7 +432,7 @@ const SCENES = [
     input: "morph about",
     lines: [
       { c: "primary", t: "morph v1.0.0 — CLI converter" },
-      { c: "accent", t: "Author: Hariharen (https://hariharen.site)" },
+      { c: "accent", t: "Author: Hariharen (https://hariharen.space)" },
       { c: "muted", t: "License: MIT · Local-first & pluggable" },
     ],
     tag: "about",

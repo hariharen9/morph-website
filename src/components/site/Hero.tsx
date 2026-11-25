@@ -180,7 +180,7 @@ export function Hero() {
             <span>
               v1 · 90+ formats <span className="hidden sm:inline">· 1,000+ routes</span> · by{" "}
               <a
-                href="https://hariharen.site"
+                href="https://hariharen.space"
                 target="_blank"
                 rel="noreferrer"
                 className="text-foreground transition-all duration-300 hover:text-primary hover:[text-shadow:0_0_8px_var(--primary)]"

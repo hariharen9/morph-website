@@ -265,7 +265,7 @@ export function Footer() {
           <span className="text-[11px] text-primary select-none animate-pulse">❤️</span>
           <span>by</span>
           <a
-            href="https://hariharen.site"
+            href="https://hariharen.space"
             target="_blank"
             rel="noreferrer"
             className="text-foreground transition-colors hover:text-primary"
